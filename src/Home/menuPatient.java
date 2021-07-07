@@ -10,5 +10,9 @@ package Home;
  * @author pallgree
  */
 public class menuPatient {
+
+    public menuPatient() {
+    }
+    
     
 }
