@@ -5,6 +5,8 @@
  */
 package Home;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.logging.Logger;
 import validate.controller;
@@ -15,20 +17,22 @@ import validate.controller;
  */
 public class menuDrug {
     drugList list=new drugList();
+    private boolean checkIn=false;
 
-    public menuDrug() {
+    public menuDrug(){
     }
     
     public void innit(){
-        drug d1=new drug("Đông Trùng Hạ Thảo","300","07-07-2001");
+        drug d1=new drug("Đông Trùng Hạ Thảo","300","07/07/2021");
         list.add(d1);
-         drug d2=new drug("Cao Bách Thảo","700","07-07-2001");
+         drug d2=new drug("Cao Bách Thảo","700","07/07/2021");
         list.add(d2);
     
     }
     
-     public void menu() {
-        innit();
+     public void menu(){
+        if(checkIn == false) innit();
+        checkIn=true;
         boolean check=false;
         Scanner sc=new Scanner(System.in);
         String tmp;
@@ -41,7 +45,11 @@ public class menuDrug {
             switch(tmp){
                 case "1":
                 System.out.println("\n-Home >> Quản lí thuốc đông y >> Thêm thuốc mới");
-                   
+                input();
+                System.out.println("Nhấn 1 phím bất kì để thoát");
+                String z=sc.nextLine();
+                menu();
+                
                 break;
                 
                 case "2":
@@ -50,7 +58,7 @@ public class menuDrug {
                 remove();
                 System.out.println(list.toString());
                 System.out.println("Nhấn 1 phím bất kì để thoát");
-                String z=sc.nextLine();
+                z=sc.nextLine();
                 menu();
                 break;
                 
@@ -90,6 +98,23 @@ public class menuDrug {
              }
          }
              
+     }
+     public void input(){
+         Scanner sc=new Scanner(System.in);
+         String a,b,c;
+         System.out.println("Nhập tên thuốc");
+         a=sc.nextLine();
+         System.out.println("Nhập khối lượng");
+         b=sc.nextLine();
+          System.out.println("Tự đông cập nhật ngày tháng......");
+         LocalDateTime myDate = LocalDateTime.now();  
+         DateTimeFormatter myFormat= DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
+         c=myDate.format(myFormat);  
+         drug d1=new drug(a,b,c);
+         list.add(d1);
+         System.err.println("Thêm thành công");
+         
+               
      }
     
     

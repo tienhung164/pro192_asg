@@ -29,7 +29,7 @@ public class drugList extends ArrayList<drug> {
              for(int j=0;j<35 - this.get(i).getName().length();j++)
                  a+=" ";
              
-             s+=this.get(i).getName()+a+this.get(i).getKluong()+"                              "+this.get(i).getDate()+"\n";
+             s+=this.get(i).getName()+a+this.get(i).getKluong()+"g                              "+this.get(i).getDate()+"\n";
          }
          s+="=============================================================================\n";
   
