@@ -16,107 +16,116 @@ import validate.controller;
  * @author pallgree
  */
 public class menuDrug {
-    drugList list=new drugList();
-    private boolean checkIn=false;
 
-    public menuDrug(){
+    drugList list = new drugList();
+    private boolean checkIn = false;
+
+    public menuDrug() {
     }
-    
-    public void innit(){
-        drug d1=new drug("Đông Trùng Hạ Thảo","300","07/07/2021");
+
+    public void innit() {
+        drug d1 = new drug("Đông Trùng Hạ Thảo", "300", "07/07/2021");
         list.add(d1);
-         drug d2=new drug("Cao Bách Thảo","700","07/07/2021");
+        drug d2 = new drug("Cao Bách Thảo", "700", "07/07/2021");
         list.add(d2);
-    
+
     }
-    
-     public void menu(){
-        if(checkIn == false) innit();
-        checkIn=true;
-        boolean check=false;
-        Scanner sc=new Scanner(System.in);
+
+    public void menu() {
+        if (checkIn == false) {
+            innit();
+        }
+        checkIn = true;
+        boolean check = false;
+        Scanner sc = new Scanner(System.in);
         String tmp;
         System.out.println("\n-Home >> Quản lí thuốc đông y");
         System.out.println("1.Thêm thuốc mới");
         System.out.println("2.Xoá thuốc");
         System.out.println("3.Hiện thị danh sách thuốc hiện có");
-        do{
-            tmp=sc.nextLine();
-            switch(tmp){
+        System.out.println("4.Quay lại");
+        do {
+            tmp = sc.nextLine();
+            switch (tmp) {
                 case "1":
-                System.out.println("\n-Home >> Quản lí thuốc đông y >> Thêm thuốc mới");
-                input();
-                System.out.println("Nhấn 1 phím bất kì để thoát");
-                String z=sc.nextLine();
-                menu();
-                
-                break;
-                
+                    System.out.println("\n-Home >> Quản lí thuốc đông y >> Thêm thuốc mới");
+                    input();
+                    System.out.println("Nhấn 1 phím bất kì để thoát");
+                    String z = sc.nextLine();
+                    menu();
+
+                    break;
+
                 case "2":
-                System.out.println("\n-Home >> Quản lí thuốc đông y >> Xoá thuốc");
-                System.out.println(list.toString());
-                remove();
-                System.out.println(list.toString());
-                System.out.println("Nhấn 1 phím bất kì để thoát");
-                z=sc.nextLine();
-                menu();
-                break;
-                
+                    System.out.println("\n-Home >> Quản lí thuốc đông y >> Xoá thuốc");
+                    System.out.println(list.toString());
+                    remove();
+                    System.out.println(list.toString());
+                    System.out.println("Nhấn 1 phím bất kì để thoát");
+                    z = sc.nextLine();
+                    menu();
+                    break;
+
                 case "3":
-                System.out.println("\n-Home >> Quản lí thuốc đông y >> Hiển thị toàn bộ danh sách");
-                System.out.println(list.toString());
-                list.toString();
-                System.out.println("Nhấn 1 phím bất kì để thoát");
-                z=sc.nextLine();
-                menu();
-                break;
-                
+                    System.out.println("\n-Home >> Quản lí thuốc đông y >> Hiển thị toàn bộ danh sách");
+                    System.out.println(list.toString());
+                    list.toString();
+                    System.out.println("Nhấn 1 phím bất kì để thoát");
+                    z = sc.nextLine();
+                    menu();
+                    break;
+
+                case "4":
+                    menuAd m3 = new menuAd();
+                    m3.menu();
+                    break;
+
                 default:
-                    check=true;
+                    check = true;
                     System.err.println("Không hợp lệ, vui lòng nhập lại!!");
-                         
+
             }
-            
-        }
-        while(check==true);
-    
+
+        } while (check == true);
+
     }
-    
-     public void remove(){
-         System.out.println("Nhập tên thuốc cần xoá");
-          Scanner sc=new Scanner(System.in);
-         String a=sc.nextLine();
-         for(int i=0;i<list.size();i++){
-             if(list.get(i).getName().equals(a))
-             {
-                 list.remove(i);
-                 System.out.println("Xoá thành công !!!");
-                 
-             }
-             else {
-                 System.out.println("Tên thuốc không tồn tại");
-             }
-         }
-             
-     }
-     public void input(){
-         Scanner sc=new Scanner(System.in);
-         String a,b,c;
-         System.out.println("Nhập tên thuốc");
-         a=sc.nextLine();
-         System.out.println("Nhập khối lượng");
-         b=sc.nextLine();
-          System.out.println("Tự đông cập nhật ngày tháng......");
-         LocalDateTime myDate = LocalDateTime.now();  
-         DateTimeFormatter myFormat= DateTimeFormatter.ofPattern("dd/MM/yyyy"); 
-         c=myDate.format(myFormat);  
-         drug d1=new drug(a,b,c);
-         list.add(d1);
-         System.err.println("Thêm thành công");
-         
-               
-     }
-    
-    
- 
+
+    public void remove() {
+        System.out.println("Nhập tên thuốc cần xoá");
+        Scanner sc = new Scanner(System.in);
+        String a = sc.nextLine();
+        boolean check = false;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getName().equals(a)) {
+                list.remove(i);
+                check = true;
+                System.out.println("Xoá thành công !!!");
+                break;
+
+            }
+
+        }
+        if (check == false) {
+            System.out.println("Tên thuốc không tồn tại");
+        }
+
+    }
+
+    public void input() {
+        Scanner sc = new Scanner(System.in);
+        String a, b, c;
+        System.out.println("Nhập tên thuốc");
+        a = sc.nextLine();
+        System.out.println("Nhập khối lượng");
+        b = sc.nextLine();
+        System.out.println("Tự đông cập nhật ngày tháng......");
+        LocalDateTime myDate = LocalDateTime.now();
+        DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        c = myDate.format(myFormat);
+        drug d1 = new drug(a, b, c);
+        list.add(d1);
+        System.err.println("Thêm thành công");
+
+    }
+
 }

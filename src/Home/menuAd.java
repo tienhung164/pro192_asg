@@ -32,6 +32,8 @@ public class menuAd {
                     m1.menu();
                 break;
                 case "2":
+                   menuPatient m2=new menuPatient();
+                   m2.menu();
                 break;
                 case "3":
                    controller c=new controller();
