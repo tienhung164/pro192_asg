@@ -5,6 +5,7 @@
  */
 package validate;
 
+import Home.menuAd;
 import java.lang.*;
 import java.util.*;
 import com.sun.mail.smtp.SMTPTransport;
@@ -66,7 +67,20 @@ public class controller {
             tmp=sc.nextLine();
             switch(tmp){
                 case "1":
-                    login();                 
+                    login();     
+                    if(cookie=="Admin") 
+                    {
+                        menuAd m=new menuAd();
+                        m.menu();
+                    }
+                    else
+                    {
+                        System.err.println("Hệ thống đang bảo trì, xin lỗi sự bất tiện này !!!");
+                         System.err.println("Bạn có thể đăng nhập tài khoản Admin để trải nghiệm hệ thống");
+                         System.err.println("Nhấp nhím bất kì để quay lại");
+                         String z=sc.nextLine();
+                         menu();
+                    }
                     break;
                     
                 case "2":
@@ -122,7 +136,7 @@ public class controller {
        if(checkLogin(a)!=-1 && list.get(checkLogin(a)).getPass().equals(b))
        {
            System.out.println("Tài khoản "+list.get(checkLogin(a)).getFullname()+" đã đăng nhập thành công vào hệ thống");
-           
+           cookie=list.get(checkLogin(a)).getFullname();
            
        }
        else{
